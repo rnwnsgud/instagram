@@ -1,0 +1,33 @@
+package snsProject.photogram.dto.auth;
+
+import lombok.Data;
+import snsProject.photogram.domain.User;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
+@Data
+public class SignupDto {
+
+    @Size(max = 20)
+    @NotBlank
+    private String username;
+
+    @NotBlank
+    private String password;
+
+    @NotBlank
+    private String email;
+
+    @NotBlank
+    private String name;
+
+    public User toEntity() {
+        return User.builder()
+                .username(username)
+                .password(password)
+                .name(name)
+                .email(email)
+                .build();
+    }
+}
