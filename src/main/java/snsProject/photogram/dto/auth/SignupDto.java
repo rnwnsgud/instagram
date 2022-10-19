@@ -9,7 +9,7 @@ import javax.validation.constraints.Size;
 @Data
 public class SignupDto {
 
-    @Size(max = 20)
+    @Size(max = 20) // @max : 숫자 사용하는 필드의 길이 제한
     @NotBlank
     private String username;
 
