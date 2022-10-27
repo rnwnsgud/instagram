@@ -1,6 +1,7 @@
 package snsProject.photogram.config.auth;
 
 import lombok.Getter;
+import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import snsProject.photogram.domain.User;
@@ -8,6 +9,7 @@ import snsProject.photogram.domain.User;
 import java.util.ArrayList;
 import java.util.Collection;
 
+@Setter
 @Getter
 public class PrincipalDetails implements UserDetails {
 
