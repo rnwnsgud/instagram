@@ -27,3 +27,6 @@ spring:
     user:
       name: test
       password: 1234
+
+file:
+  path: C:/Users/Computer/Desktop/개발/springStudy/photogram/src/main/resources/static/images/

@@ -1,9 +1,11 @@
 package snsProject.photogram.domain;
 
 import lombok.*;
+import net.minidev.json.annotate.JsonIgnore;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -31,6 +33,10 @@ public class User {
 
     private String profileImageUrl;
     private String role;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    private List<Image> images;
 
     private LocalDateTime createDate;
 

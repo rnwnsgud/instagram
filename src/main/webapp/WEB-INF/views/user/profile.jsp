@@ -26,9 +26,14 @@
 		<!--유저정보 및 사진등록 구독하기-->
 		<div class="profile-right">
 			<div class="name-group">
-				<h2>${principal.user.name}</h2>
+				<h2>${dto.user.name}</h2>
 
-				<button class="cta" onclick="location.href='/image/upload'">사진등록</button>
+                <c:choose>
+                    <c:when test="${dto.pageOwnerState}">
+                        <button class="cta" onclick="location.href='/image/upload'">사진등록</button>
+                    </c:when>
+                </c:choose>
+
 				<button class="cta" onclick="toggleSubscribe(this)">구독하기</button>
 				<button class="modi" onclick="popup('.modal-info')">
 					<i class="fas fa-cog"></i>
@@ -37,15 +42,15 @@
 
 			<div class="subscribe">
 				<ul>
-					<li><a href=""> 게시물<span>3</span>
+					<li><a href=""> 게시물<span>${dto.imageCount}</span>
 					</a></li>
 					<li><a href="javascript:subscribeInfoModalOpen();"> 구독정보<span>2</span>
 					</a></li>
 				</ul>
 			</div>
 			<div class="state">
-				<h4>${principal.user.bio}</h4>
-				<h4>${principal.user.website}</h4>
+				<h4>${dto.user.bio}</h4>
+				<h4>${dto.user.website}</h4>
 			</div>
 		</div>
 		<!--유저정보 및 사진등록 구독하기-->
@@ -63,34 +68,18 @@
 			<div class="tab-1-content-inner">
 
 				<!--아이템들-->
+				<c:forEach var="image" items="${user.images}">
+                    <div class="img-box">
+                        <a href=""> <img src="/images/${image.postImageUrl}" />
+                        </a>
+                        <div class="comment">
+                            <a href="#" class=""> <i class="fas fa-heart"></i><span>0</span>
+                            </a>
+                        </div>
+                     </div>
+				</c:forEach>
 
 
-				<div class="img-box">
-					<a href=""> <img src="/images/home.jpg" />
-					</a>
-					<div class="comment">
-						<a href="#" class=""> <i class="fas fa-heart"></i><span>0</span>
-						</a>
-					</div>
-				</div>
-
-				<div class="img-box">
-					<a href=""> <img src="/images/home.jpg" />
-					</a>
-					<div class="comment">
-						<a href="#" class=""> <i class="fas fa-heart"></i><span>0</span>
-						</a>
-					</div>
-				</div>
-
-				<div class="img-box">
-					<a href=""> <img src="/images/home.jpg" />
-					</a>
-					<div class="comment">
-						<a href="#" class=""> <i class="fas fa-heart"></i><span>0</span>
-						</a>
-					</div>
-				</div>
 
 				<!--아이템들end-->
 			</div>
