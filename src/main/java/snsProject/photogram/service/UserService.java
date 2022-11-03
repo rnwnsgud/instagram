@@ -10,6 +10,7 @@ import snsProject.photogram.dto.user.UserProfileDto;
 import snsProject.photogram.dto.user.UserRespDto;
 import snsProject.photogram.handler.exception.CustomException;
 import snsProject.photogram.handler.exception.CustomValidationApiException;
+import snsProject.photogram.repository.SubscribeRepository;
 import snsProject.photogram.repository.UserRepository;
 
 @RequiredArgsConstructor
@@ -18,6 +19,7 @@ import snsProject.photogram.repository.UserRepository;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final SubscribeRepository subscribeRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Transactional(readOnly = true)
@@ -26,10 +28,15 @@ public class UserService {
             throw new CustomException("해당 프로필 페이지는 없는 페이지입니다.");
         });
 
+        int subscribeState = subscribeRepository.subscribeState(principalDetails.getUser().getId(), userId);
+        int subscribeCount = subscribeRepository.subscribeCount(userId);
+
         UserProfileDto dto = UserProfileDto.builder()
                 .pageOwnerState(userId == principalDetails.getUser().getId() ? true : false)
                 .user(userEntity)
                 .imageCount(userEntity.getImages().size())
+                .subscribeState(1 == subscribeState)
+                .subscribeCount(subscribeCount)
                 .build();
         return dto;
 
