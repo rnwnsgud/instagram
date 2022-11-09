@@ -79,7 +79,7 @@
 			<div class="tab-1-content-inner">
 
 				<!--아이템들-->
-				<c:forEach var="image" items="${user.images}">
+				<c:forEach var="image" items="${dto.user.images}">
                     <div class="img-box">
                         <a href=""> <img src="/images/${image.postImageUrl}" />
                         </a>
