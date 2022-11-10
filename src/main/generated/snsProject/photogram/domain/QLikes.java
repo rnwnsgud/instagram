@@ -11,47 +11,44 @@ import com.querydsl.core.types.dsl.PathInits;
 
 
 /**
- * QImage is a Querydsl query type for Image
+ * QLikes is a Querydsl query type for Likes
  */
 @Generated("com.querydsl.codegen.DefaultEntitySerializer")
-public class QImage extends EntityPathBase<Image> {
+public class QLikes extends EntityPathBase<Likes> {
 
-    private static final long serialVersionUID = -881908765L;
+    private static final long serialVersionUID = -879247804L;
 
     private static final PathInits INITS = PathInits.DIRECT2;
 
-    public static final QImage image = new QImage("image");
-
-    public final StringPath caption = createString("caption");
+    public static final QLikes likes = new QLikes("likes");
 
     public final DateTimePath<java.time.LocalDateTime> createDate = createDateTime("createDate", java.time.LocalDateTime.class);
 
     public final NumberPath<Integer> id = createNumber("id", Integer.class);
 
-    public final ListPath<Likes, QLikes> likes = this.<Likes, QLikes>createList("likes", Likes.class, QLikes.class, PathInits.DIRECT2);
-
-    public final StringPath postImageUrl = createString("postImageUrl");
+    public final QImage image;
 
     public final QUser user;
 
-    public QImage(String variable) {
-        this(Image.class, forVariable(variable), INITS);
+    public QLikes(String variable) {
+        this(Likes.class, forVariable(variable), INITS);
     }
 
-    public QImage(Path<? extends Image> path) {
+    public QLikes(Path<? extends Likes> path) {
         this(path.getType(), path.getMetadata(), PathInits.getFor(path.getMetadata(), INITS));
     }
 
-    public QImage(PathMetadata metadata) {
+    public QLikes(PathMetadata metadata) {
         this(metadata, PathInits.getFor(metadata, INITS));
     }
 
-    public QImage(PathMetadata metadata, PathInits inits) {
-        this(Image.class, metadata, inits);
+    public QLikes(PathMetadata metadata, PathInits inits) {
+        this(Likes.class, metadata, inits);
     }
 
-    public QImage(Class<? extends Image> type, PathMetadata metadata, PathInits inits) {
+    public QLikes(Class<? extends Likes> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
+        this.image = inits.isInitialized("image") ? new QImage(forProperty("image"), inits.get("image")) : null;
         this.user = inits.isInitialized("user") ? new QUser(forProperty("user")) : null;
     }
 

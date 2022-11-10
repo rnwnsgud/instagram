@@ -1,6 +1,5 @@
 package snsProject.photogram.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -8,36 +7,34 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 @Builder
+@Table(
+        uniqueConstraints = {
+                @UniqueConstraint(
+                        name = "likes_uk",
+                        columnNames = {"imageId", "userId"}
+                )
+        }
+)
 @Entity
-public class Image {
+public class Likes {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String caption; // 설명문
-    private String postImageUrl; // 전송 받은 사진을 서버의 특정 폴더에 저장할 경로
 
-    @JsonIgnoreProperties({"images"})
+    //오류가 터지고나서 잡는다
+    @JoinColumn(name = "imageId")
+    @ManyToOne
+    private Image image;
+
     @JoinColumn(name = "userId")
     @ManyToOne
     private User user;
-    // 이미지 좋아요
-    @JsonIgnoreProperties({"image"})
-    @OneToMany(mappedBy = "image")
-    private List<Likes> likes;
-
-    @Transient //import javax.persistence.*;
-    private boolean likeState;
-
-    @Transient
-    private int likeCount;
-    // 댓글
 
     private LocalDateTime createDate;
 
@@ -45,5 +42,4 @@ public class Image {
     public void createDate() {
         this.createDate = LocalDateTime.now();
     }
-
 }
