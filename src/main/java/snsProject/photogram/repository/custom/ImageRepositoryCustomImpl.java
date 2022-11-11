@@ -11,12 +11,14 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.support.PageableExecutionUtils;
 import snsProject.photogram.domain.Image;
 import snsProject.photogram.domain.QImage;
+import snsProject.photogram.domain.QLikes;
 import snsProject.photogram.domain.QSubscribe;
 
 import javax.persistence.EntityManager;
 import java.util.List;
 
 import static snsProject.photogram.domain.QImage.*;
+import static snsProject.photogram.domain.QLikes.*;
 import static snsProject.photogram.domain.QSubscribe.*;
 
 public class ImageRepositoryCustomImpl implements ImageRepositoryCustom{

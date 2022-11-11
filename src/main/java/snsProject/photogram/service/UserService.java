@@ -28,6 +28,10 @@ public class UserService {
             throw new CustomException("해당 프로필 페이지는 없는 페이지입니다.");
         });
 
+        userEntity.getImages().forEach(image -> {
+            image.setLikeCount(image.getLikes().size());
+        });
+
         int subscribeState = subscribeRepository.subscribeState(principalDetails.getUser().getId(), userId);
         int subscribeCount = subscribeRepository.subscribeCount(userId);
 

@@ -26,7 +26,6 @@ public class UserController {
 
         UserProfileDto dto = userService.userProfile(id,principalDetails);
         model.addAttribute("dto", dto);
-//        System.out.println("userEntity = " + userEntity.getImages().get(0).getPostImageUrl());
 
         return "user/profile";
     }
