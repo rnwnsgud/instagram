@@ -8,13 +8,14 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import snsProject.photogram.config.auth.PrincipalDetailsService;
+import snsProject.photogram.config.oauth.OAuth2DetailsService;
 
 @RequiredArgsConstructor
 @EnableWebSecurity
 @Configuration
 public class SecurityConfig {
 
-    private final PrincipalDetailsService principalDetailsService;
+    private final OAuth2DetailsService oAuth2DetailsService;
 
     @Bean
     public BCryptPasswordEncoder encode() {
@@ -35,7 +36,12 @@ public class SecurityConfig {
                 .loginProcessingUrl("/auth/signin")
                 .defaultSuccessUrl("/")
                     .and()
-                .build();
+                .oauth2Login() // form 로그인도 하는데, oauth2로그인도 진행한다.
+                .userInfoEndpoint() // oauth2 로그인을하면 회원정보 바로 받기 (code 받고 access 토큰 요청스킵)
+                .userService(oAuth2DetailsService)
+                    .and()
+                .and().build();
+
 
     }
 

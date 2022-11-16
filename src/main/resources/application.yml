@@ -28,5 +28,18 @@ spring:
       name: test
       password: 1234
 
+    oauth2:
+      client:
+        registration:
+          facebook:
+            client-id: 454168170108583
+            client-secret: 6fe9a51ee125f51b1a32e47ed35d9d44
+            scope:
+              - public_profile
+              - email
+
+
+
+
 file:
   path: C:/Users/Computer/Desktop/개발/springStudy/photogram/src/main/resources/static/images/

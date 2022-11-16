@@ -18,7 +18,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(unique = true, length = 20)
+    @Column(unique = true, length = 100)
     private String username;
     private String password;
 
@@ -44,4 +44,6 @@ public class User {
     public void createDate() {
         this.createDate = LocalDateTime.now();
     }
+
+
 }

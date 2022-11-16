@@ -38,6 +38,10 @@ public class Image {
     @Transient
     private int likeCount;
     // 댓글
+    @OrderBy("id DESC")
+    @JsonIgnoreProperties({"image"})
+    @OneToMany(mappedBy = "image")
+    private List<Comment> comments;
 
     private LocalDateTime createDate;
 
