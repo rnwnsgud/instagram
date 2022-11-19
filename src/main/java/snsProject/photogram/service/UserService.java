@@ -6,12 +6,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import snsProject.photogram.config.auth.PrincipalDetails;
 import snsProject.photogram.domain.User;
+import snsProject.photogram.dto.user.UserListDto;
 import snsProject.photogram.dto.user.UserProfileDto;
 import snsProject.photogram.dto.user.UserRespDto;
 import snsProject.photogram.handler.exception.CustomException;
 import snsProject.photogram.handler.exception.CustomValidationApiException;
 import snsProject.photogram.repository.SubscribeRepository;
 import snsProject.photogram.repository.UserRepository;
+
+import java.util.List;
 
 @RequiredArgsConstructor
 @Transactional
@@ -21,6 +24,12 @@ public class UserService {
     private final UserRepository userRepository;
     private final SubscribeRepository subscribeRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    @Transactional(readOnly = true)
+    public List<UserListDto> userList(String username, String gender) {
+        List<UserListDto> userWithSearch = userRepository.findUserWithSearch(username, gender);
+        return userWithSearch;
+    }
 
     @Transactional(readOnly = true)
     public UserProfileDto userProfile(int userId, PrincipalDetails principalDetails) {

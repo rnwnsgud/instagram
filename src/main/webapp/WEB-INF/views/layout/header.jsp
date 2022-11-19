@@ -52,6 +52,15 @@
 							<i class="far fa-user"></i>
 						</a></li>
 				</ul>
+				 <form class="search__input" action="/user/search", method="get">
+                    <input type="text" name="username" placeholder="유저네임" required="required" />
+                    <select name="gender">
+                        <option value="">성별을 선택하세요</option>
+                        <option value="남">남</option>
+                        <option value="여">여</option>
+                    </select>
+                    <button>찾기</button>
+                 </form>
 			</nav>
 		</div>
 	</header>
